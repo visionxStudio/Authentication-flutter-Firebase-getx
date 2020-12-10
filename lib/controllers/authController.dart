@@ -1,3 +1,5 @@
+import 'package:firebaseAuthentication/screens/homepage.dart';
+import 'package:firebaseAuthentication/screens/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -20,8 +22,13 @@ class AuthController extends GetxController {
   // creating the new user
   void createUser(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .whenComplete(
+            () => Get.offAll(
+              Homepage(),
+            ),
+          );
     } catch (error) {
       Get.snackbar("Error Creating account", error.message,
           snackPosition: SnackPosition.BOTTOM);
@@ -35,7 +42,13 @@ class AuthController extends GetxController {
 
   void login(String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .whenComplete(
+            () => Get.offAll(
+              Homepage(),
+            ),
+          );
     } catch (error) {
       Get.snackbar("Unable to sign in!", error.message,
           snackPosition: SnackPosition.BOTTOM);
@@ -47,7 +60,11 @@ class AuthController extends GetxController {
 
   void signOut() async {
     try {
-      await _auth.signOut();
+      await _auth.signOut().whenComplete(
+            () => Get.offAll(
+              Login(),
+            ),
+          );
     } catch (error) {
       print(error.code);
     }
