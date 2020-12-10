@@ -1,4 +1,4 @@
-package com.example.firebaseAuthentication
+package com.techsansaar.firebaseAuthentication
 
 import io.flutter.embedding.android.FlutterActivity
 
