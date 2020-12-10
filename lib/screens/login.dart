@@ -1,8 +1,9 @@
+import 'package:firebaseAuthentication/controllers/authController.dart';
 import 'package:firebaseAuthentication/screens/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Login extends StatelessWidget {
+class Login extends GetWidget<AuthController> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = new TextEditingController();
@@ -64,7 +65,7 @@ class Login extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          // TODO Handle the login request
+          controller.login(emailController.text, passwordController.text);
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
@@ -91,7 +92,7 @@ class Login extends StatelessWidget {
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightGreen,
-        child: Text('Register', style: TextStyle(color: Colors.white)),
+        child: Text('Signup', style: TextStyle(color: Colors.white)),
       ),
     );
 

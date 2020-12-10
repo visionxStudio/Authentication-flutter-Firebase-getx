@@ -1,13 +1,16 @@
+import 'package:firebaseAuthentication/controllers/authController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends GetWidget<AuthController> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
   final String _errorMessage = '';
+
+  // final authController = AuthController.to;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +67,7 @@ class Signup extends StatelessWidget {
         ),
         onPressed: () {
           // TODO Handle the signup request
+          controller.createUser(emailController.text, passwordController.text);
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
